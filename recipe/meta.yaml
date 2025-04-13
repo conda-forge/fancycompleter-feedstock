@@ -1,5 +1,5 @@
 {% set name = "fancycompleter" %}
-{% set version = "0.9.1" %}
+{% set version = "0.11.0" %}
 
 
 package:
@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fancycompleter-{{ version }}.tar.gz
-  sha256: 09e0feb8ae242abdfd7ef2ba55069a46f011814a80fe5476be48f51b00247272
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fancycompleter-{{ version }}.tar.gz
+  sha256: 632b265b29dd0315b96d33d13d83132a541d6312262214f50211b3981bb4fa00
 
 build:
-  number: 1007
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -30,9 +30,9 @@ requirements:
 test:
   imports:
     - fancycompleter
-  commands:  # [not win]
+  commands:   # [not win]
     - pip check  # [not win]
-  requires:  # [not win]
+  requires:   # [not win]
     - pip  # [not win]
 
 about:
