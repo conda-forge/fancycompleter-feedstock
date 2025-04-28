@@ -1,53 +1,52 @@
 {% set name = "fancycompleter" %}
-{% set version = "0.9.1" %}
-
+{% set version = "0.11.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fancycompleter-{{ version }}.tar.gz
-  sha256: 09e0feb8ae242abdfd7ef2ba55069a46f011814a80fe5476be48f51b00247272
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fancycompleter-{{ version }}.tar.gz
+  sha256: 632b265b29dd0315b96d33d13d83132a541d6312262214f50211b3981bb4fa00
 
 build:
-  number: 1007
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
-    - python
+    - python {{ python_min }}
     - pip
-    - setupmeta
+    - setuptools
   run:
-    - python
+    - python >={{ python_min }}
     - pyreadline  # [win]
-    - pyrepl >=0.8.2  # [not win]
+    - pyrepl >=0.11.3
 
 test:
   imports:
     - fancycompleter
-  commands:  # [not win]
-    - pip check  # [not win]
-  requires:  # [not win]
-    - pip  # [not win]
+  commands:
+    - pip check
+    - pytest -sv tests
+  requires:
+    - python {{ python_min }}
+    - pip
+    - pytest
 
 about:
-  home: https://github.com/pdbpp/fancycompleter
+  home: https://pypi.org/project/fancycompleter
   license: BSD-3-Clause
   license_family: BSD
   summary: 'colorful Python TAB completion'
-  # license file missing: https://github.com/pdbpp/fancycompleter/pull/38
   license_file: LICENSE
   description: |
     fancycompleter is a module to improve your experience in Python by adding
     TAB completion to the interactive prompt. It is an extension of the
     stdlib's rlcompleter module.
-  doc_url: https://github.com/pdbpp/fancycompleter
-  dev_url: https://github.com/pdbpp/fancycompleter
+  doc_url: https://pypi.org/project/fancycompleter
+  dev_url: https://github.com/bretello/fancycompleter
 
 extra:
   recipe-maintainers:
