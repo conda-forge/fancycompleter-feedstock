@@ -27,6 +27,8 @@ requirements:
     - pyrepl >=0.11.3  # [py<313]
 
 test:
+  source_files:
+    - tests
   imports:
     - fancycompleter
   commands:
