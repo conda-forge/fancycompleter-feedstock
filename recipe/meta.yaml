@@ -11,10 +11,12 @@ source:
 
 build:
   number: 0
-  noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
+  build:
+    - python python {{ python_min }}                       # [build_platform != target_platform]
+    - cross-python_{{ target_platform }} {{ python_min }}  # [build_platform != target_platform]
   host:
     - python {{ python_min }}
     - pip
@@ -22,7 +24,7 @@ requirements:
   run:
     - python >={{ python_min }}
     - pyreadline  # [win]
-    - pyrepl >=0.11.3
+    - pyrepl >=0.11.3  # [py<313]
 
 test:
   imports:
