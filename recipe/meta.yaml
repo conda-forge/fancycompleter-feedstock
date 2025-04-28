@@ -15,14 +15,14 @@ build:
 
 requirements:
   build:
-    - python python {{ python_min }}                       # [build_platform != target_platform]
-    - cross-python_{{ target_platform }} {{ python_min }}  # [build_platform != target_platform]
+    - python python                       # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
   host:
-    - python {{ python_min }}
+    - python
     - pip
     - setuptools
   run:
-    - python >={{ python_min }}
+    - python
     - pyreadline  # [win]
     - pyrepl >=0.11.3  # [py<313]
 
@@ -33,7 +33,7 @@ test:
     - pip check
     - pytest -sv tests
   requires:
-    - python {{ python_min }}
+    - python
     - pip
     - pytest
 
