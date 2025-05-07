@@ -12,6 +12,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: True  # [win]
 
 requirements:
   build:
@@ -23,7 +24,6 @@ requirements:
     - setuptools
   run:
     - python
-    - pyreadline  # [win]
     - pyrepl >=0.11.3  # [py<313]
 
 test:
