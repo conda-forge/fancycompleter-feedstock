@@ -23,7 +23,7 @@ requirements:
     # from setuptools_scm[toml]
     - tomli
   run:
-    - python
+    - python >={{ python_min }}
     - pyrepl >=0.11.3
     - pyreadline3
     - __unix  # [unix]
@@ -39,7 +39,7 @@ test:
     - pip check
     - pytest -sv tests
   requires:
-    - python
+    - python {{ python_min }}
     - pip
     - pytest
 
