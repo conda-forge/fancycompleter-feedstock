@@ -10,21 +10,25 @@ source:
   sha256: 5b4ad65d76b32b1259251516d0f1cb2d82832b1ff8506697a707284780757f69
 
 build:
-  number: 0
+  noarch: python
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [win]
 
 requirements:
-  build:
-    - python                              # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
   host:
-    - python
+    - python {{ python_min }}
     - pip
     - setuptools
+    - setuptools_scm >=8
+    # from setuptools_scm[toml]
+    - tomli
   run:
     - python
-    - pyrepl >=0.11.3  # [py<313]
+    - pyrepl >=0.11.3
+    - pyreadline3
+    - __unix  # [unix]
+    - __win  # [win]
+    - pyreadline3  # [win]
 
 test:
   source_files:
@@ -58,3 +62,4 @@ extra:
     - sodre
     - mariusvniekerk
     - anjos
+    - thewchan
