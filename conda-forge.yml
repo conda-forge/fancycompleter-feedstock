@@ -12,3 +12,6 @@ provider:
 test: native_and_emulated
 bot:
   automerge: true
+noarch_platforms:
+  - linux_64
+  - win_64
