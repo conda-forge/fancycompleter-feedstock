@@ -22,6 +22,8 @@ requirements:
     - python
     - pip
     - setuptools
+    - setuptools_scm >=8
+    - tomli
   run:
     - python
     - pyrepl >=0.11.3  # [py<313]
