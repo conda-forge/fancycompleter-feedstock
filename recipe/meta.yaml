@@ -10,7 +10,7 @@ source:
   sha256: 5b4ad65d76b32b1259251516d0f1cb2d82832b1ff8506697a707284780757f69
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   skip: true  # [win]
 
@@ -22,6 +22,8 @@ requirements:
     - python
     - pip
     - setuptools
+    - setuptools_scm >=8
+    - tomli
   run:
     - python
     - pyrepl >=0.11.3  # [py<313]
